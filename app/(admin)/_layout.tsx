@@ -2,6 +2,8 @@ import { CustomTabBar } from '@/components/CustomTabBar';
 import { useAuthStore } from '@/lib/authStore';
 import { Redirect, Tabs } from 'expo-router';
 
+const renderTabBar = (props: any) => <CustomTabBar {...props} />;
+
 export default function AdminLayout() {
   const { isAuthenticated, user } = useAuthStore();
 
@@ -12,7 +14,7 @@ export default function AdminLayout() {
 
   return (
     <Tabs
-      tabBar={props => <CustomTabBar {...props} />}
+      tabBar={renderTabBar}
       screenOptions={{
         headerShown: false,
       }}

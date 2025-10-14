@@ -15,7 +15,6 @@ interface DirectBillingProps {
 export const DirectBilling: React.FC<DirectBillingProps> = ({ onQuickBilling, onDineIn }) => {
   return (
     <View className="flex-1 p-4 gap-6">
-      {/* Header */}
       <View className="mb-4">
         <Heading size="2xl" className="font-bold text-typography-900 mb-2">
           Direct Billing
@@ -25,10 +24,9 @@ export const DirectBilling: React.FC<DirectBillingProps> = ({ onQuickBilling, on
         </Text>
       </View>
 
-      {/* Billing Options */}
       <View className="flex-row gap-4">
         <Pressable onPress={onQuickBilling} className="flex-1">
-          <Card className="p-6 items-center">
+          <Card className="p-6 items-center border border-border-200">
             <Box className="w-16 h-16 bg-primary-500 rounded-lg items-center justify-center mb-4">
               <CreditCard size={32} color="white" />
             </Box>
@@ -42,7 +40,7 @@ export const DirectBilling: React.FC<DirectBillingProps> = ({ onQuickBilling, on
         </Pressable>
 
         <Pressable onPress={onDineIn} className="flex-1">
-          <Card className="p-6 items-center">
+          <Card className="p-6 items-center border border-border-200">
             <Box className="w-16 h-16 bg-primary-500 rounded-lg items-center justify-center mb-4">
               <Utensils size={32} color="white" />
             </Box>
@@ -56,8 +54,7 @@ export const DirectBilling: React.FC<DirectBillingProps> = ({ onQuickBilling, on
         </Pressable>
       </View>
 
-      {/* Tip */}
-      <Card className="p-4 bg-background-50">
+      <Card className="p-4 bg-background-50 border border-border-200">
         <View className="flex-row items-start gap-3">
           <Lightbulb size={20} color="#f59e0b" />
           <Text className="text-typography-700 flex-1">

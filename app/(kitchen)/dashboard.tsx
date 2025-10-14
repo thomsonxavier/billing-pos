@@ -90,7 +90,7 @@ export default function KitchenDashboard() {
         </View>
 
         {/* Pending Orders */}
-        <View className="bg-white rounded-xl p-5 mb-5 shadow-sm">
+        <View className="bg-background-50 rounded-xl p-5 mb-5 border border-border-200">
           <Text className="text-lg font-semibold text-gray-800 mb-4">Pending Orders</Text>
           {pendingOrders.map((order, index) => (
             <OrderItem key={index} {...order} />

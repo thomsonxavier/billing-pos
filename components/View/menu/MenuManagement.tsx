@@ -20,6 +20,7 @@ import {
 import { Switch } from '@/components/ui/switch';
 import { Plus, Edit, Trash2, X } from 'lucide-react-native';
 import { Box } from '@/components/ui/box';
+import { useColorModeStore } from '@/lib/colorModeStore';
 
 interface MenuItem {
   id: string;
@@ -37,6 +38,8 @@ interface Category {
 }
 
 export const MenuManagement: React.FC = () => {
+  const { colorMode } = useColorModeStore();
+  const [nextId, setNextId] = useState(9);
   const [menuItems, setMenuItems] = useState<MenuItem[]>([
     {
       id: '1',
@@ -139,7 +142,7 @@ export const MenuManagement: React.FC = () => {
     if (!formData.name || !formData.category || !formData.price) return;
 
     const newItem: MenuItem = {
-      id: Date.now().toString(),
+      id: nextId.toString(),
       name: formData.name,
       category: formData.category,
       price: parseFloat(formData.price),
@@ -148,6 +151,7 @@ export const MenuManagement: React.FC = () => {
     };
 
     setMenuItems([...menuItems, newItem]);
+    setNextId(nextId + 1);
     setShowAddModal(false);
     resetForm();
   };
@@ -169,11 +173,6 @@ export const MenuManagement: React.FC = () => {
     setMenuItems(menuItems.filter(item => item.id !== id));
   };
 
-  const handleToggleAvailable = (id: string) => {
-    setMenuItems(menuItems.map(item => 
-      item.id === id ? { ...item, available: !item.available } : item
-    ));
-  };
 
   const handleAddCategory = () => {
     if (!newCategory.trim()) return;
@@ -184,7 +183,7 @@ export const MenuManagement: React.FC = () => {
 
     if (!categoryExists) {
       const newCat: Category = {
-        id: Date.now().toString(),
+        id: nextId.toString(),
         name: newCategory,
         color: 'bg-gray-100'
       };
@@ -217,9 +216,9 @@ export const MenuManagement: React.FC = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-background-50">
+    <SafeAreaView className={`flex-1 ${colorMode === 'dark' ? 'dark' : ''} bg-background-0`} edges={['top', 'left', 'right']}>
       {/* Header */}
-      <View className="p-4 bg-white border-b border-background-200">
+      <View className="p-4 bg-background-50 border-b border-border-200">
         <View className="flex-row items-center justify-between">
           <View className="flex-1">
             <Heading size="lg" className="font-bold text-typography-900">
@@ -254,10 +253,10 @@ export const MenuManagement: React.FC = () => {
               </Heading>
               <View className="gap-1">
                 {items.map((item) => (
-                  <Card key={item.id} className="p-2 bg-white rounded-md border border-background-200">
+                  <Card key={item.id} className="p-2 bg-background-50 rounded-md border border-border-200">
                     <View className="flex-row items-center gap-2">
                       {/* Image */}
-                      <View className="w-10 h-10 bg-background-100 rounded-md overflow-hidden border border-background-200">
+                      <View className="w-10 h-10 bg-background-100 rounded-md overflow-hidden border border-border-200">
                         {item.image ? (
                           <Image 
                             source={{ uri: item.image }} 
@@ -338,7 +337,7 @@ export const MenuManagement: React.FC = () => {
       {/* Add Item Modal */}
       <Modal isOpen={showAddModal} onClose={() => setShowAddModal(false)}>
         <ModalBackdrop />
-        <ModalContent className="bg-white rounded-lg mx-4">
+        <ModalContent className="bg-background-50 rounded-lg mx-4">
           <ModalHeader>
             <Heading size="lg" className="font-bold text-typography-900">
               Add Menu Item
@@ -417,7 +416,7 @@ export const MenuManagement: React.FC = () => {
       {/* Edit Item Modal */}
       <Modal isOpen={showEditModal} onClose={() => setShowEditModal(false)}>
         <ModalBackdrop />
-        <ModalContent className="bg-white rounded-lg mx-4">
+        <ModalContent className="bg-background-50 rounded-lg mx-4">
           <ModalHeader>
             <Heading size="lg" className="font-bold text-typography-900">
               Edit Menu Item
@@ -474,7 +473,7 @@ export const MenuManagement: React.FC = () => {
                     onChangeText={(value) => setFormData({ ...formData, image: value })}
                   />
                 </Input>
-                {formData.image && (
+                {!!formData.image && (
                   <View className="mt-2 w-16 h-16 bg-background-100 rounded-lg overflow-hidden">
                     <Image 
                       source={{ uri: formData.image }} 
@@ -505,7 +504,7 @@ export const MenuManagement: React.FC = () => {
       {/* Category Management Modal */}
       <Modal isOpen={showCategoryModal} onClose={() => setShowCategoryModal(false)}>
         <ModalBackdrop />
-        <ModalContent className="bg-white rounded-lg mx-4">
+        <ModalContent className="bg-background-50 rounded-lg mx-4">
           <ModalHeader>
             <Heading size="lg" className="font-bold text-typography-900">
               Manage Categories

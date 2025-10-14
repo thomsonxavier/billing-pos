@@ -168,7 +168,7 @@ export const AddItems: React.FC<AddItemsProps> = ({ onBack, onNext }) => {
             const quantity = cartItem?.quantity || 0;
             
             return (
-              <Card key={item.id} className="p-3 border border-background-200 bg-white shadow-sm">
+              <Card key={item.id} className="p-3 border border-border-200 bg-background-50">
                 <View className="flex-row items-center gap-3">
                   <View className="w-16 h-16 bg-background-100 rounded-lg overflow-hidden border border-background-200">
                     {item.image ? (
@@ -213,7 +213,7 @@ export const AddItems: React.FC<AddItemsProps> = ({ onBack, onNext }) => {
                     )}
                     <Pressable 
                       onPress={() => handleAddToCart(item)}
-                      className={`w-8 h-8 rounded-full items-center justify-center shadow-sm ${
+                      className={`w-8 h-8 rounded-full items-center justify-center ${
                         quantity > 0 ? 'bg-green-500' : 'bg-primary-500'
                       }`}
                     >

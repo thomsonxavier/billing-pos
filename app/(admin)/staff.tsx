@@ -1,11 +1,6 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { StaffManagement } from '@/components/View/staff';
 
 export default function Staff() {
-  return (
-    <View className="flex-1 bg-gray-100 justify-center items-center">
-      <Text className="text-2xl font-bold text-gray-800">Staff Management</Text>
-      <Text className="text-gray-600 mt-2">Coming Soon</Text>
-    </View>
-  );
+  return <StaffManagement />;
 }

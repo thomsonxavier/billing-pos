@@ -62,7 +62,7 @@ export default function WaiterDashboard() {
   ];
 
   const BillingModeCard = ({ mode }: any) => (
-    <TouchableOpacity className="bg-white rounded-xl mb-4 shadow-sm">
+    <TouchableOpacity className="bg-background-50 rounded-xl mb-4 border border-border-200">
       <View className="flex-row items-center p-5">
         <View 
           className="w-12 h-12 rounded-xl justify-center items-center mr-4"
@@ -99,7 +99,7 @@ export default function WaiterDashboard() {
   );
 
   const QuickActionCard = ({ action }: any) => (
-    <View className="bg-white rounded-xl p-5 flex-1 mx-1 items-center shadow-sm">
+    <View className="bg-background-50 rounded-xl p-5 flex-1 mx-1 items-center border border-border-200">
       <Text className="text-sm text-gray-600 mb-2">{action.title}</Text>
       <Text className={`text-2xl font-bold ${action.color}`}>
         {action.value}

@@ -2,7 +2,6 @@ import React from 'react';
 import { View, ScrollView } from 'react-native';
 import { Card } from '@/components/ui/card';
 import { Text } from '@/components/ui/text';
-import { Heading } from '@/components/ui/heading';
 import { Button } from '@/components/ui/button';
 import { Printer, FileText, Home } from 'lucide-react-native';
 import { Box } from '@/components/ui/box';
@@ -16,7 +15,7 @@ interface BillSummaryProps {
 }
 
 export const BillSummary: React.FC<BillSummaryProps> = ({ onPrintBill, onNewBill, onDashboard }) => {
-  const { currentOrder, cart, paymentDetails, customerDetails, getCartSubtotal, getCartTotal } = useBillingStore();
+  const { cart, paymentDetails, customerDetails, getCartSubtotal, getCartTotal } = useBillingStore();
   
   const subtotal = getCartSubtotal();
   const gst = subtotal * 0.18;
@@ -65,7 +64,7 @@ export const BillSummary: React.FC<BillSummaryProps> = ({ onPrintBill, onNewBill
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         <View className="p-4">
           {/* Bill Summary Card */}
-          <Card className="bg-white rounded-lg shadow-sm">
+          <Card className="bg-background-50 rounded-lg border border-border-200">
             {/* Bill Header */}
             <View className="p-4 border-b border-background-200">
               <View className="flex-row justify-between items-start">

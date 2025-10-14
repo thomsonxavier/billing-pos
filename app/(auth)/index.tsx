@@ -214,9 +214,6 @@ export default function AuthScreen() {
           className={`px-4 py-3 rounded-xl items-center min-w-20 ${config.bgColor} border ${config.borderColor}`}
           style={{
             elevation: 2,
-            shadowOffset: { width: 0, height: 1 },
-            shadowOpacity: 0.1,
-            shadowRadius: 2,
           }}
         >
           <IconComponent
@@ -245,7 +242,7 @@ export default function AuthScreen() {
       >
         {/* Card Container */}
         <Box
-          className="bg-background-0 rounded-3xl p-8 shadow-2xl border border-outline-200"
+          className="bg-background-0 rounded-3xl p-8 border border-border-200"
           style={{ elevation: 8 }}
         >
           {/* Theme Toggle - Top Right */}
@@ -257,8 +254,8 @@ export default function AuthScreen() {
 
           {/* Header */}
           <VStack className="items-center mb-8 mt-4">
-            <Box className="bg-primary p-4 rounded-2xl mb-4">
-              <UtensilsCrossed size={32} color="#FFFFFF" />
+            <Box className="bg-primary-500 p-4 rounded-2xl mb-4">
+              <UtensilsCrossed size={32} color="white" />
             </Box>
             <Heading size="2xl" className="font-bold text-typography-900 mb-2">
               Restaurant POS
@@ -273,7 +270,7 @@ export default function AuthScreen() {
             <Text className="text-base font-semibold text-typography-900 mb-2">
               Username
             </Text>
-            <Input className="bg-background-0 border-outline-300" size="lg">
+            <Input className="bg-background-50 border border-border-200" size="lg">
               <InputField
                 value={username}
                 onChangeText={setUsername}
@@ -281,6 +278,7 @@ export default function AuthScreen() {
                 type="text"
                 autoCapitalize="none"
                 autoCorrect={false}
+                className="text-typography-900"
               />
             </Input>
           </VStack>
@@ -290,7 +288,7 @@ export default function AuthScreen() {
             <Text className="text-base font-semibold text-typography-900 mb-2">
               Password
             </Text>
-            <Input className="bg-background-0 border-outline-300" size="lg">
+            <Input className="bg-background-50 border border-border-200" size="lg">
               <InputField
                 value={password}
                 onChangeText={setPassword}
@@ -299,6 +297,7 @@ export default function AuthScreen() {
                 secureTextEntry
                 autoCapitalize="none"
                 autoCorrect={false}
+                className="text-typography-900"
               />
             </Input>
           </VStack>
@@ -321,18 +320,22 @@ export default function AuthScreen() {
             isDisabled={!username.trim() || !password.trim() || isLoading}
             className={`rounded-xl mb-6 ${
               username.trim() && password.trim() && !isLoading
-                ? "bg-primary"
-                : "bg-outline-300"
+                ? "bg-primary-500"
+                : "bg-gray-300"
             }`}
             size="lg"
           >
             {isLoading ? (
               <HStack className="items-center gap-2">
                 <Spinner color="white" size="small" />
-                <ButtonText className="text-white">Signing In...</ButtonText>
+                <ButtonText className="text-white font-semibold">Signing In...</ButtonText>
               </HStack>
             ) : (
-              <ButtonText className="text-white">Sign In</ButtonText>
+              <ButtonText className={`font-semibold ${
+                username.trim() && password.trim() ? "text-white" : "text-gray-500"
+              }`}>
+                Sign In
+              </ButtonText>
             )}
           </Button>
 
