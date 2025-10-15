@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, ScrollView } from 'react-native';
 import { Card } from '@/components/ui/card';
 import { Text } from '@/components/ui/text';
@@ -15,15 +15,17 @@ interface BillSummaryProps {
 }
 
 export const BillSummary: React.FC<BillSummaryProps> = ({ onPrintBill, onNewBill, onDashboard }) => {
+  console.log("🚀 ~ BillSummary ~ onPrintBill:", onPrintBill)
   const { cart, paymentDetails, customerDetails, getCartSubtotal, getCartTotal } = useBillingStore();
+  
+  // Generate stable order details using useState
+  const [orderNumber] = useState(() => `ORD${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`);
+  const [tokenNumber] = useState(() => `TKN${Math.floor(Math.random() * 900) + 100}`);
   
   const subtotal = getCartSubtotal();
   const gst = subtotal * 0.18;
   const total = getCartTotal();
   
-  // Generate order details
-  const orderNumber = `ORD${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`;
-  const tokenNumber = `TKN${Math.floor(Math.random() * 900) + 100}`;
   const currentDate = new Date();
   const formattedDate = currentDate.toLocaleDateString('en-IN');
   const formattedTime = currentDate.toLocaleTimeString('en-IN', { 
@@ -128,20 +130,26 @@ export const BillSummary: React.FC<BillSummaryProps> = ({ onPrintBill, onNewBill
 
       {/* Action Buttons */}
       <View className="p-4 mb-2 bg-white border-t border-background-200">
-        <View className="flex-row gap-3">
-          <Button onPress={handlePrintBill} className="flex-1 bg-background-100 border border-primary-500 py-3">
-            <Printer size={18} color="#3b82f6" />
-            <Text className="text-primary-500 font-medium ml-2">Print Bill</Text>
+        <View className="flex-row gap-2">
+          <Button onPress={handlePrintBill} className="flex-1 bg-background-100 border border-primary-500 py-3 px-2">
+            <View className="flex-row items-center justify-center">
+              <Printer size={16} color="#3b82f6" />
+              <Text className="text-primary-500 font-medium ml-1 text-xs">Print Bill</Text>
+            </View>
           </Button>
           
-          <Button onPress={onNewBill} className="flex-1 bg-background-100 border border-primary-500 py-3">
-            <FileText size={18} color="#3b82f6" />
-            <Text className="text-primary-500 font-medium ml-2">New Bill</Text>
+          <Button onPress={onNewBill} className="flex-1 bg-background-100 border border-primary-500 py-3 px-2">
+            <View className="flex-row items-center justify-center">
+              <FileText size={16} color="#3b82f6" />
+              <Text className="text-primary-500 font-medium ml-1 text-xs">New Bill</Text>
+            </View>
           </Button>
           
-          <Button onPress={onDashboard} className="flex-1 bg-primary-500 py-3">
-            <Home size={18} color="white" />
-            <Text className="text-white font-medium ml-2">Dashboard</Text>
+          <Button onPress={onDashboard} className="flex-1 bg-primary-500 py-3 px-2">
+            <View className="flex-row items-center justify-center">
+              <Home size={16} color="white" />
+              <Text className="text-white font-medium ml-1 text-xs">Dashboard</Text>
+            </View>
           </Button>
         </View>
       </View>

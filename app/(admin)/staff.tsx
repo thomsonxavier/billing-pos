@@ -1,6 +1,5 @@
-import React from 'react';
-import { StaffManagement } from '@/components/View/staff';
+import { StaffManagement } from "@/components/View/staff";
 
 export default function Staff() {
   return <StaffManagement />;
-}
+}       

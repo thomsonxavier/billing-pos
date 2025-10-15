@@ -12,8 +12,7 @@ import { useEffect } from 'react';
 import { Stack } from 'expo-router';
 import { AppProviders } from '@/providers/AppProviders';
 import { useColorModeStore } from '@/lib/colorModeStore';
-import { View } from 'react-native';
-import { Text } from '@/components/ui/text';
+
 
 export {
   // Catch any errors thrown by the Layout component.
