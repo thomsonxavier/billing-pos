@@ -1,4 +1,4 @@
-import { CustomTabBar } from '@/components/CustomTabBar';
+
 import { useAuthStore } from '@/lib/authStore';
 import { Redirect, Tabs, usePathname, useRouter } from 'expo-router';
 import { Box } from '@/components/ui/box';
@@ -14,9 +14,9 @@ import {
   ActionsheetScrollView
 } from '@/components/ui/actionsheet';
 import { useState } from 'react';
-import { Users, Package, Settings, BarChart3, Receipt, ChefHat, Menu } from 'lucide-react-native';
+import { Users, Package, Settings, BarChart3, Receipt, ChefHat, Menu, Home, SettingsIcon } from 'lucide-react-native';
+import { Platform, StatusBar } from 'react-native';
 
-const renderTabBar = (props: unknown) => <CustomTabBar {...(props as any)} />;
 
 export default function AdminLayout() {
   const { isAuthenticated, user } = useAuthStore();
@@ -32,22 +32,22 @@ export default function AdminLayout() {
     setShowActionsheet(false);
     switch (action) {
       case 'staff':
-        router.push('/(admin)/(settings)/staff');
+        router.push('/(routes)/(admin)/(settings)/staff');
         break;
       case 'inventory':
         // router.push('/(admin)/(settings)/inventory');
         break;
       case 'quick-bill':
-        router.push('/(admin)/billing');
+        router.push('/(routes)/(admin)/billing');
         break;
       case 'add-menu':
-        router.push('/(admin)/menu');
+        router.push('/(routes)/(admin)/menu');
         break;
       case 'reports':
-          router.push('/(admin)/reports');
+          router.push('/(routes)/(admin)/reports');
         break;
       case 'settings':
-        // router.push('/(admin)/(settings)/');
+        router.push('/(routes)/(admin)/(settings)');
         break;
       default:
         break;
@@ -56,19 +56,21 @@ export default function AdminLayout() {
 
   return (
     <Box className="flex-1">
+      <StatusBar barStyle={Platform.OS === 'ios' ? 'light-content' : 'default'} />
       <Tabs
-        tabBar={renderTabBar}
-        screenOptions={{
-          headerShown: false,
-          lazy: true,
-        }}
+      screenOptions={{
+        headerShown: false,
+      }}
       >
         <Tabs.Screen
           name="dashboard"
           options={{
             title: 'Dashboard',
             tabBarLabel: 'Dashboard',
+            headerShown: false,
+            tabBarIcon: ({ color, size }) => <Home size={size} color={color} />,  // Icon for the tab bar
           }}
+          
         />
 
 
@@ -77,6 +79,8 @@ export default function AdminLayout() {
           options={{
             title: 'Billing',
             tabBarLabel: 'Billing',
+            headerShown: false,
+            tabBarIcon: ({ color, size }) => <Receipt size={size} color={color} />,  // Icon for the tab bar
           }}
         />
         <Tabs.Screen
@@ -84,6 +88,8 @@ export default function AdminLayout() {
           options={{
             title: 'Menu',
             tabBarLabel: 'Menu',
+            headerShown: false,
+            tabBarIcon: ({ color, size }) => <Menu size={size} color={color} />,  // Icon for the tab bar
           }}
         />
         <Tabs.Screen
@@ -91,13 +97,17 @@ export default function AdminLayout() {
           options={{
             title: 'Reports',
             tabBarLabel: 'Reports',
+            headerShown: false,
+            tabBarIcon: ({ color, size }) => <BarChart3 size={size} color={color} />,  // Icon for the tab bar
           }}
         />
         <Tabs.Screen
-          name="settings"
+          name="(settings)"
           options={{
             title: 'Settings',
             tabBarLabel: 'Settings',
+            headerShown: false,
+            tabBarIcon: ({ color, size }) => <SettingsIcon size={size} color={color} />,  // Icon for the tab bar
           }}
         />
       </Tabs>

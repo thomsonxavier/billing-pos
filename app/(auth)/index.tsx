@@ -170,11 +170,11 @@ export default function AuthScreen() {
 
       // Navigate based on role
       if (user.role === "admin") {
-        router.replace("/(admin)/dashboard");
+        router.replace("/(routes)/(admin)/dashboard");
       } else if (user.role === "waiter") {
-        router.replace("/(waiter)/dashboard");
+        router.replace("/(routes)/(waiter)/dashboard");
       } else {
-        router.replace("/(kitchen)/dashboard");
+        router.replace("/(routes)/(kitchen)/dashboard");
       }
     } else {
       const newAttempts = attempts + 1;

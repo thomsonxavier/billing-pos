@@ -374,7 +374,7 @@ const StaffManagement: React.FC = () => {
   return (
     <SafeAreaView className={`flex-1 ${colorMode === 'dark' ? 'dark' : ''} bg-background-0`} edges={['top', 'left', 'right']}>
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-        <VStack space="lg" className="p-6">
+        <VStack space="lg" className="px-6">
           {/* Header */}
           <HStack space="md" className="items-start justify-between">
             <VStack space="xs" className="flex-1">

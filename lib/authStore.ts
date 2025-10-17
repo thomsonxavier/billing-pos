@@ -18,6 +18,7 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
 
   // Actions
   login: (user: User, token?: string) => {
+    console.log("🚀 ~ token:", token)
     set({
       user,
       isAuthenticated: true,
