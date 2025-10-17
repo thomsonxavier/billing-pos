@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "starter-kit-expo",
-    "slug": "starter-kit-expo",
+    "slug": "pos",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -33,10 +33,18 @@
     "plugins": [
       "expo-router",
       "expo-web-browser",
-      "expo-font"
+      "expo-font",
+      "expo-dev-client"
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "85e08abf-e602-4db7-b7a4-9f9f6610d3e4"
+      }
+    },
+    "owner": "personals"
   }
 }
