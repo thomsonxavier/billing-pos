@@ -32,22 +32,22 @@ export default function AdminLayout() {
     setShowActionsheet(false);
     switch (action) {
       case 'staff':
-        // router.push('/(admin)/staff-modal');
+        router.push('/(admin)/(settings)/staff');
         break;
       case 'inventory':
-        // router.push('/(admin)/inventory-modal');
+        // router.push('/(admin)/(settings)/inventory');
         break;
       case 'quick-bill':
-        router.push('/(tabs)/(admin)/billing');
+        router.push('/(admin)/billing');
         break;
       case 'add-menu':
-        router.push('/(tabs)/(admin)/menu');
+        router.push('/(admin)/menu');
         break;
       case 'reports':
-        router.push('/(tabs)/(admin)/reports');
+          router.push('/(admin)/reports');
         break;
       case 'settings':
-        router.push('/(tabs)/(admin)/settings');
+        // router.push('/(admin)/(settings)/');
         break;
       default:
         break;
